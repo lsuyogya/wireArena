@@ -1,1 +1,79 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+.header {
+  padding-block: 1rem;
+  box-shadow: 0px -1.9rem 1rem 2rem #c0c0c0;
+  margin-block-end: 1rem;
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  width: 100%;
+  background-color: white;
+}
+main {
+  padding-block-start: var(--headerHeight);
+}
+
+.mobileHeader {
+  .content {
+    display: flex;
+    justify-content: space-between;
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      inset: 0;
+      z-index: 200;
+      transform: translateX(200%);
+      transition: transform 300ms;
+      &[data-open="true"] {
+        transform: translateX(0%);
+      }
+      nav {
+        display: grid;
+        padding: 2rem;
+        padding-block-start: 4rem;
+        background-color: #fff;
+        height: 100%;
+        grid-auto-rows: max-content;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.hamburger {
+  --_burgerWidth: 1.45rem;
+  height: 2px;
+  width: var(--_burgerWidth);
+  background-color: var(--colorDarker);
+  margin-block: auto;
+  position: relative;
+  z-index: 201;
+  transition: background-color 300ms;
+  &::after,
+  &::before {
+    content: "";
+    background-color: var(--colorDarker);
+    position: absolute;
+    height: 2px;
+    width: var(--_burgerWidth);
+    transform-origin: center;
+    transition: transform 300ms;
+  }
+  &::after {
+    top: -0.5rem;
+  }
+  &::before {
+    bottom: -0.5rem;
+  }
+  &[data-open="true"] {
+    background-color: transparent;
+    &::after {
+      transform: rotate(-45deg) translate(-0.35rem, 0.35rem);
+    }
+    &::before {
+      transform: rotate(45deg) translate(-0.35rem, -0.35rem);
+    }
+  }
+}
