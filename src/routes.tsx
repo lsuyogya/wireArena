@@ -1,20 +1,20 @@
-import { AnyRouter, LinkOptions, linkOptions } from "@tanstack/react-router";
-import Logo from "@assets/WireArenaLogo.svg?react";
+import { AnyRouter, LinkOptions, linkOptions } from '@tanstack/react-router';
+import Logo from '@assets/WireArenaLogo.svg?react';
 
-export const headerLinks = [
+export const headerLinks: HeaderLinkOptions[] = [
   linkOptions({
-    to: "/",
-    label: "Logo",
+    to: '/',
+    label: 'Logo',
     children: <Logo />,
-    className: "logoLink",
+    className: 'logoLink',
   }),
   linkOptions({
-    to: "/",
-    label: "Home",
+    to: '/',
+    label: 'Home',
   }),
   linkOptions({
-    to: "/about",
-    label: "About",
+    to: '/about',
+    label: 'About',
   }),
 ];
 
@@ -40,62 +40,62 @@ export const footerLinks: FooterLinkGroup[] = [
   {
     subLinks: [
       linkOptions({
-        to: "/",
-        label: "Logo",
+        to: '/',
+        label: 'Logo',
         children: <Logo />,
-        className: "logoLink",
+        className: 'logoLink',
       }),
     ],
   },
   {
-    label: "Our Team",
+    label: 'Our Team',
     subLinks: [
       linkOptions({
-        to: "/about",
-        label: "About us",
+        to: '/about',
+        label: 'About us',
       }),
       linkOptions({
-        to: "/",
-        label: "Team",
+        to: '/',
+        label: 'Team',
       }),
       linkOptions({
-        to: "/",
-        label: "What We Do",
+        to: '/',
+        label: 'What We Do',
       }),
     ],
   },
   {
-    label: "More",
+    label: 'More',
     subLinks: [
       linkOptions({
-        to: "/",
-        label: "Projects",
+        to: '/',
+        label: 'Projects',
       }),
       linkOptions({
-        to: "/",
-        label: "Events",
+        to: '/',
+        label: 'Events',
       }),
     ],
   },
   {
-    label: "Connect",
+    label: 'Connect',
     external: true,
     subLinks: [
       {
-        to: "https://www.facebook.com",
-        label: "Facebook",
+        to: 'https://www.facebook.com',
+        label: 'Facebook',
       },
       {
-        to: "https://www.instagram.com",
-        label: "Instagram",
+        to: 'https://www.instagram.com',
+        label: 'Instagram',
       },
       {
-        to: "https://www.twitter.com",
-        label: "Twitter",
+        to: 'https://www.twitter.com',
+        label: 'Twitter',
       },
       {
-        to: "https://www.linkedin.com",
-        label: "Linkedin",
+        to: 'https://www.linkedin.com',
+        label: 'Linkedin',
       },
     ],
   },

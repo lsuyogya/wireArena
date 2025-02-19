@@ -1,13 +1,13 @@
-import { Link } from "@tanstack/react-router";
-import { HeaderLinkOptions } from "../routes";
-import { useState, useEffect, useLayoutEffect } from "react";
-import { useAnimation, motion } from "motion/react";
+import { Link } from '@tanstack/react-router';
+import { HeaderLinkOptions } from '../routes';
+import { useState, useEffect, useLayoutEffect } from 'react';
+import { useAnimation, motion } from 'motion/react';
 
 const MobileHeader = ({ links }: { links: HeaderLinkOptions[] }) => {
   // Separate the logo link from the rest
-  const logoLink = links.find((link) => link.label.toLowerCase() === "logo");
+  const logoLink = links.find((link) => link.label.toLowerCase() === 'logo');
   const otherLinks = links.filter(
-    (link) => link.label.toLowerCase() !== "logo"
+    (link) => link.label.toLowerCase() !== 'logo'
   );
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
   const controls = useAnimation();
@@ -17,15 +17,15 @@ const MobileHeader = ({ links }: { links: HeaderLinkOptions[] }) => {
 
   useLayoutEffect(() => {
     const updateHeaderHeight = () => {
-      const height = document.querySelector("header")?.offsetHeight || 0;
+      const height = document.querySelector('header')?.offsetHeight || 0;
       setHeaderHeight(height);
-      document.body.style.setProperty("--headerHeight", `${height}px`);
+      document.body.style.setProperty('--headerHeight', `${height}px`);
     };
 
     updateHeaderHeight();
-    window.addEventListener("resize", updateHeaderHeight);
+    window.addEventListener('resize', updateHeaderHeight);
 
-    return () => window.removeEventListener("resize", updateHeaderHeight);
+    return () => window.removeEventListener('resize', updateHeaderHeight);
   }, []);
 
   useEffect(() => {
@@ -35,14 +35,14 @@ const MobileHeader = ({ links }: { links: HeaderLinkOptions[] }) => {
       setPrevScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     controls.start({
       y: visible ? 0 : -headerHeight - 32,
-      transition: { type: "spring", stiffness: 300, damping: 30 },
+      transition: { type: 'spring', stiffness: 300, damping: 30 },
     });
   }, [visible, controls, headerHeight]);
 
@@ -50,16 +50,14 @@ const MobileHeader = ({ links }: { links: HeaderLinkOptions[] }) => {
     <motion.header
       className="mainGrid header mobileHeader"
       animate={controls}
-      initial={{ y: 0 }}
-    >
-      <div className="content">
+      initial={{ y: 0 }}>
+      <div className="container content">
         {logoLink && (
           <Link
             {...logoLink}
             key={logoLink.to}
             activeProps={{ className: `active` }}
-            className="logoLink"
-          >
+            className="logoLink">
             {logoLink.children ?? logoLink.label}
           </Link>
         )}
@@ -70,14 +68,15 @@ const MobileHeader = ({ links }: { links: HeaderLinkOptions[] }) => {
             setHamburgerOpen((prev) => !prev);
           }}
         />
-        <div className="sidebar" data-open={hamburgerOpen}>
+        <div
+          className="sidebar"
+          data-open={hamburgerOpen}>
           <nav className="breakout nav">
             {otherLinks.map((link) => (
               <Link
                 {...link}
                 key={link.to}
-                activeProps={{ className: `active` }}
-              >
+                activeProps={{ className: `active` }}>
                 {link.label}
               </Link>
             ))}

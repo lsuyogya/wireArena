@@ -15,6 +15,8 @@
     "motion": "^12.4.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "set-scrollbar-width": "^1.0.5",
+    "tailwind-container-break-out": "^2.0.9",
     "tailwindcss": "^4.0.3",
     "vite-plugin-svgr": "^4.3.0"
   },

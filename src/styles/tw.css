@@ -1,4 +1,15 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+/* @plugin 'tailwind-container-break-out'; */
+
+@theme {
+  --color-primary: #007bff;
+  --color-primary-light: #f1f8ff;
+}
+
+.container {
+  @apply mx-auto;
+  @apply px-4;
+}
 
 .header {
   padding-block: 1rem;
@@ -9,6 +20,11 @@
   top: 0;
   width: 100%;
   background-color: white;
+  .container {
+    gap: 1rem;
+    align-items: center;
+    align-content: center;
+  }
 }
 main {
   padding-block-start: var(--headerHeight);
@@ -26,7 +42,7 @@ main {
       z-index: 200;
       transform: translateX(200%);
       transition: transform 300ms;
-      &[data-open="true"] {
+      &[data-open='true'] {
         transform: translateX(0%);
       }
       nav {
@@ -44,6 +60,7 @@ main {
 
 .hamburger {
   --_burgerWidth: 1.45rem;
+  --colorDarker: black;
   height: 2px;
   width: var(--_burgerWidth);
   background-color: var(--colorDarker);
@@ -53,7 +70,7 @@ main {
   transition: background-color 300ms;
   &::after,
   &::before {
-    content: "";
+    content: '';
     background-color: var(--colorDarker);
     position: absolute;
     height: 2px;
@@ -67,7 +84,7 @@ main {
   &::before {
     bottom: -0.5rem;
   }
-  &[data-open="true"] {
+  &[data-open='true'] {
     background-color: transparent;
     &::after {
       transform: rotate(-45deg) translate(-0.35rem, 0.35rem);
@@ -76,4 +93,23 @@ main {
       transform: rotate(45deg) translate(-0.35rem, -0.35rem);
     }
   }
+}
+
+.headerHelper {
+  transform: translateY(-200vh);
+}
+
+section:first-of-type {
+  margin-block-start: var(--headerHeight);
+  padding-block-start: calc(10rem / 2.5);
+}
+
+.dot {
+  --radius: calc(5rem / 16);
+  display: block;
+  width: var(--radius);
+  height: var(--radius);
+  background-color: black;
+  border-radius: 50%;
+  align-self: center;
 }

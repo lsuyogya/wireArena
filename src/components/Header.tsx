@@ -1,9 +1,9 @@
-import { useRef } from "react";
-import DesktopHeader from "../components/DesktopHeader";
-import { headerLinks as links } from "../routes";
-import MobileHeader from "@/components/MobileHeader";
-import { Link } from "@tanstack/react-router";
-import { useHorizontalDistanceObserver } from "@/hooks/useHorizontalDistance";
+import { useRef } from 'react';
+import DesktopHeader from '../components/DesktopHeader';
+import { headerLinks as links } from '../routes';
+import MobileHeader from '@/components/MobileHeader';
+import { Link } from '@tanstack/react-router';
+import { useHorizontalDistanceObserver } from '@/hooks/useHorizontalDistance';
 
 const Header = () => {
   const leftEdgeRef = useRef(null);
@@ -15,9 +15,8 @@ const Header = () => {
   );
   return (
     <>
-      <div className="headerHelper header mainGrid">
-        <div className="breakout nav">
-          headerLinks as{" "}
+      <div className="headerHelper header">
+        <div className="container mx-auto flex">
           {links.map((link, index) => {
             return (
               <Link
@@ -26,8 +25,8 @@ const Header = () => {
                 ref={
                   index === 0 ? leftEdgeRef : index === 1 ? rightEdgeRef : null
                 }
-              >
-                {link.label}
+                className={index === 0 ? 'mr-auto' : ''}>
+                {link.children ?? link.label}
               </Link>
             );
           })}

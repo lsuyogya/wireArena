@@ -1,7 +1,7 @@
-import { Link } from "@tanstack/react-router";
-import { HeaderLinkOptions } from "@/routes.tsx";
-import { useState, useEffect, useLayoutEffect } from "react";
-import { useAnimation, motion } from "motion/react";
+import { Link } from '@tanstack/react-router';
+import { HeaderLinkOptions } from '@/routes.tsx';
+import { useState, useEffect, useLayoutEffect } from 'react';
+import { useAnimation, motion } from 'motion/react';
 const DesktopHeader = ({ links }: { links: HeaderLinkOptions[] }) => {
   const controls = useAnimation();
   const [prevScrollY, setPrevScrollY] = useState(0);
@@ -16,31 +16,34 @@ const DesktopHeader = ({ links }: { links: HeaderLinkOptions[] }) => {
 
   useLayoutEffect(() => {
     const updateHeaderHeight = () => {
-      const height = document.querySelector("header")?.offsetHeight || 0;
+      const height = document.querySelector('header')?.offsetHeight || 0;
       setHeaderHeight(height);
-      document.body.style.setProperty("--headerHeight", `${height}px`);
+      document.body.style.setProperty('--headerHeight', `${height}px`);
     };
 
     updateHeaderHeight();
-    window.addEventListener("resize", updateHeaderHeight);
+    window.addEventListener('resize', updateHeaderHeight);
 
-    return () => window.removeEventListener("resize", updateHeaderHeight);
+    return () => window.removeEventListener('resize', updateHeaderHeight);
   }, []);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [prevScrollY]);
 
   useEffect(() => {
     controls.start({
       y: visible ? 0 : -headerHeight - 32,
-      transition: { type: "spring", stiffness: 300, damping: 30 },
+      transition: { type: 'spring', stiffness: 300, damping: 30 },
     });
   }, [visible, controls, headerHeight]);
 
   return (
-    <motion.header className="header" animate={controls} initial={{ y: 0 }}>
+    <motion.header
+      className="header"
+      animate={controls}
+      initial={{ y: 0 }}>
       <nav className="container mx-auto flex">
         {links.map((link, index) => {
           return (
@@ -48,7 +51,7 @@ const DesktopHeader = ({ links }: { links: HeaderLinkOptions[] }) => {
               {...link}
               key={link.to + index}
               activeProps={{ className: `active` }}
-            >
+              className={index === 0 ? 'mr-auto' : ''}>
               {link.children ?? link.label}
             </Link>
           );
